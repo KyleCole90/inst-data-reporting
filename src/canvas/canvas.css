@@ -1,0 +1,58 @@
+/* Canvas reports: shadcn/ui on the shared Mastery tokens, so both apps read as one system. */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../shared/tokens.css";
+
+/* The Mastery app sets data-theme on <html>; follow it instead of a .dark class. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --font-sans: var(--font);
+  --font-heading: var(--font);
+  --font-mono: var(--font-mono);
+  --color-chart-1: var(--series-1);
+  --color-chart-2: var(--series-2);
+  --color-chart-3: var(--series-3);
+  --color-ring: var(--series-1);
+  --color-input: var(--border);
+  --color-border: var(--border);
+  --color-destructive: var(--status-critical);
+  --color-accent-foreground: var(--text-primary);
+  --color-accent: var(--grid);
+  --color-muted-foreground: var(--text-secondary);
+  --color-muted: var(--grid);
+  --color-secondary-foreground: var(--text-primary);
+  --color-secondary: var(--grid);
+  --color-primary-foreground: var(--surface-1);
+  --color-primary: var(--text-primary);
+  --color-popover-foreground: var(--text-primary);
+  --color-popover: var(--surface-1);
+  --color-card-foreground: var(--text-primary);
+  --color-card: var(--surface-1);
+  --color-foreground: var(--text-primary);
+  --color-background: var(--page);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--series-1);
+    outline-offset: 2px;
+  }
+}
+
+@media print {
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .no-print { display: none !important; }
+}

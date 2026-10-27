@@ -1,7 +1,7 @@
 /** Fixtures shaped exactly like MasteryConnect REST API v2 responses.
  *  Swapping these for live fetch calls is a config change, not a rewrite. */
 
-import { makeRng, hash, clamp, noise, pick } from './prng'
+import { makeRng, hash, clamp, noise, pick } from '../../shared/prng'
 import {
   DISTRICT, SCHOOLS, TEACHERS, CLASSROOMS, OBJECTIVES, CURRICULUM_MAPS,
   ITEM_TYPES, type Subject,

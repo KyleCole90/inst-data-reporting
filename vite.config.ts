@@ -14,6 +14,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'),
         mastery: path.resolve(__dirname, 'mastery/index.html'),
+        canvas: path.resolve(__dirname, 'canvas/index.html'),
       },
     },
   },

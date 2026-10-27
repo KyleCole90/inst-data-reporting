@@ -5,7 +5,7 @@
  *  Canvas Data through the Data Access Platform, and the standards and tracker
  *  structure from the MasteryConnect API. */
 
-import { makeRng, hash, clamp, noise } from './prng'
+import { makeRng, hash, clamp, noise } from '../../shared/prng'
 import { CLASSROOMS } from './seed'
 import { assessedObjectiveIds, standardScore } from './api'
 

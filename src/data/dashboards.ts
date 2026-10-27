@@ -1,4 +1,4 @@
-// Dashboards listed on the landing page. Canvas entries are placeholders until those reports exist.
+// Dashboards listed on the landing page.
 
 export type Product = 'Canvas' | 'Mastery'
 export type Status = 'live' | 'coming-soon'
@@ -14,6 +14,7 @@ export type Dashboard = {
 }
 
 const MC = `${import.meta.env.BASE_URL}mastery/`
+const CANVAS = `${import.meta.env.BASE_URL}canvas/`
 
 export const DASHBOARDS: Dashboard[] = [
   {
@@ -53,40 +54,31 @@ export const DASHBOARDS: Dashboard[] = [
     href: `${MC}#card`,
   },
   {
-    id: 'cv-activity',
-    title: 'Course activity and engagement',
+    id: 'cv-assessment',
+    title: 'Assessment analytics',
     product: 'Canvas',
-    question: 'Which courses are students actually showing up to each week?',
-    source: 'Canvas Data 2 (placeholder)',
-    status: 'coming-soon',
-    href: '#',
+    question: 'How are students scoring, and where are submissions late or missing?',
+    source: 'Canvas Data 2 (sample fixtures)',
+    status: 'live',
+    href: `${CANVAS}#assessment`,
   },
   {
-    id: 'cv-submissions',
-    title: 'Assignment submission timeliness',
+    id: 'cv-programs',
+    title: 'Program assessment',
     product: 'Canvas',
-    question: 'Where are late and missing submissions piling up?',
-    source: 'Canvas Data 2 (placeholder)',
-    status: 'coming-soon',
-    href: '#',
+    question: 'Which departments are moving students toward mastery of their outcomes?',
+    source: 'Canvas Data 2 (sample fixtures)',
+    status: 'live',
+    href: `${CANVAS}#programs`,
   },
   {
-    id: 'cv-grades',
-    title: 'Grade distribution by course',
+    id: 'cv-outcomes',
+    title: 'Outcome results',
     product: 'Canvas',
-    question: 'Which sections grade noticeably harder or easier than peers?',
-    source: 'Canvas Data 2 (placeholder)',
-    status: 'coming-soon',
-    href: '#',
-  },
-  {
-    id: 'cv-readiness',
-    title: 'Course readiness at term start',
-    product: 'Canvas',
-    question: 'Which courses are still unpublished or empty on day one?',
-    source: 'Canvas Data 2 (placeholder)',
-    status: 'coming-soon',
-    href: '#',
+    question: 'How do students rate on each learning outcome, and what changed between terms?',
+    source: 'Canvas Data 2 (sample fixtures)',
+    status: 'live',
+    href: `${CANVAS}#outcomes`,
   },
 ]
 
