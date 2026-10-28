@@ -6,6 +6,7 @@ import type { Subject } from '../data/seed'
 import { Legend, MethodHeading, Segmented, StatTile, SourceNote, Tooltip, type Method } from '../components/ui'
 import { ENDPOINTS } from '../data/endpoints'
 import { PRIORITY_NOTE } from '../data/methodNotes'
+import { ReportHeading } from '../../shared/ReportShell'
 
 /* Coverage state is an ordered severity, not series identity, so it takes the
    reserved status palette. Each segment ships a number and a labelled legend
@@ -81,13 +82,10 @@ export function CoverageGaps() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-      <header>
-        <h1>Curriculum map coverage gaps.</h1>
-        <p className="secondary" style={{ margin: '6px 0 0', fontSize: 13.5, maxWidth: 680, lineHeight: 1.55 }}>
-          What did we plan but never assess? Standards in the year map are matched against standards
-          that actually appear in tracker assessments, in both directions.
-        </p>
-      </header>
+      <ReportHeading
+        title="Curriculum map coverage gaps"
+        description="What did we plan but never assess? Standards in the year map are matched against standards that actually appear in tracker assessments, in both directions."
+      />
 
       <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'flex-end' }}>
         <Segmented
@@ -101,7 +99,7 @@ export function CoverageGaps() {
         />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12 }}>
         <StatTile label="Standards in the map" value={total} note={c.map.name} method={METHODS.total} />
         <StatTile label="Assessed everywhere" value={c.counts.covered} note={`${Math.round((c.counts.covered / total) * 100)}% of the map`} method={METHODS.covered} />
         <StatTile label="Partly assessed" value={c.counts.partial} note="Some trackers skipped them" method={METHODS.partial} />
@@ -111,7 +109,7 @@ export function CoverageGaps() {
       {/* Stacked bar: part-to-whole with direct labels */}
       <div className="card">
         <MethodHeading method={METHODS.coverageBar} title="Map coverage">
-          <h2 style={{ fontSize: 14 }}>Map coverage.</h2>
+          <h2 style={{ fontSize: 14 }}>Map coverage</h2>
         </MethodHeading>
         <p className="muted" style={{ fontSize: 12, margin: '4px 0 14px' }}>
           {total} planned standards across {c.classrooms.length} trackers.
@@ -154,7 +152,7 @@ export function CoverageGaps() {
       {neverAssessed.length > 0 && (
         <div className="card" style={{ borderLeft: '3px solid var(--status-critical)' }}>
           <MethodHeading method={METHODS.neverAssessedTable} title="Planned, but assessed nowhere">
-            <h2 style={{ fontSize: 14 }}>Planned, but assessed nowhere.</h2>
+            <h2 style={{ fontSize: 14 }}>Planned, but assessed nowhere</h2>
           </MethodHeading>
           <p className="secondary" style={{ fontSize: 12.5, margin: '4px 0 12px', lineHeight: 1.55 }}>
             Not one tracker in the district assessed these. There is no data to tell you whether
@@ -185,7 +183,7 @@ export function CoverageGaps() {
       {partial.length > 0 && (
         <div className="card">
           <MethodHeading method={METHODS.partlyAssessedTable} title="Assessed in some trackers only">
-            <h2 style={{ fontSize: 14 }}>Assessed in some trackers only.</h2>
+            <h2 style={{ fontSize: 14 }}>Assessed in some trackers only</h2>
           </MethodHeading>
           <p className="secondary" style={{ fontSize: 12.5, margin: '4px 0 12px', lineHeight: 1.55 }}>
             Comparing these standards across the district is unsafe, because some classrooms have no
@@ -228,7 +226,7 @@ export function CoverageGaps() {
       {c.offMap.length > 0 && (
         <div className="card" style={{ borderLeft: '3px solid var(--status-warning)' }}>
           <MethodHeading method={METHODS.offMapTable} title="Assessed, but not in the map">
-            <h2 style={{ fontSize: 14 }}>Assessed, but not in the map.</h2>
+            <h2 style={{ fontSize: 14 }}>Assessed, but not in the map</h2>
           </MethodHeading>
           <p className="secondary" style={{ fontSize: 12.5, margin: '4px 0 12px', lineHeight: 1.55 }}>
             Teachers built assessments for standards the year map never planned. Usually that means

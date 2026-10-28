@@ -193,7 +193,7 @@ export function MethodBadge({ method, title }: { method: Method; title: string }
           display: 'inline-flex', alignItems: 'center', gap: 4, lineHeight: 1.4, flexShrink: 0,
         }}
       >
-        <span aria-hidden style={{ fontSize: 10 }}>&#8505;</span>
+        <svg aria-hidden width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" /></svg>
         Method
       </button>
       {open && createPortal(
@@ -227,13 +227,13 @@ export function MethodBadge({ method, title }: { method: Method; title: string }
           </div>
           {method.sample && (
             <div style={{ marginTop: 10, color: 'var(--text-secondary)' }}>
-              <strong style={{ color: 'var(--status-warning)', fontWeight: 600 }}>Sample data. </strong>
+              <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Sample data. </strong>
               {method.sample}
             </div>
           )}
           {method.invented && (
             <div style={{ marginTop: 10, color: 'var(--text-secondary)' }}>
-              <strong style={{ color: 'var(--status-critical)', fontWeight: 600 }}>Not in the API. </strong>
+              <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Not in the API. </strong>
               {method.invented}
             </div>
           )}
@@ -340,28 +340,14 @@ export function Segmented<T extends string>({ value, options, onChange, label }:
   label: string
 }) {
   return (
-    <div style={{ display: 'inline-flex', flexDirection: 'column', gap: 4 }}>
-      <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>{label}</span>
-      <div role="group" aria-label={label} style={{ display: 'inline-flex', background: 'var(--surface-1)', border: '1px solid var(--border)', borderRadius: 7, padding: 2, gap: 2 }}>
-        {options.map((o) => {
-          const active = o.value === value
-          return (
-            <button
-              key={o.value}
-              onClick={() => onChange(o.value)}
-              aria-pressed={active}
-              style={{
-                border: 0, cursor: 'pointer', font: 'inherit', fontSize: 12.5,
-                padding: '5px 11px', borderRadius: 5,
-                background: active ? 'var(--text-primary)' : 'transparent',
-                color: active ? 'var(--surface-1)' : 'var(--text-secondary)',
-                fontWeight: active ? 600 : 400,
-              }}
-            >
-              {o.label}
-            </button>
-          )
-        })}
+    <div className="rs-field">
+      <span className="rs-label">{label}</span>
+      <div role="group" aria-label={label} className="rs-seg">
+        {options.map((o) => (
+          <button key={o.value} onClick={() => onChange(o.value)} aria-pressed={o.value === value}>
+            {o.label}
+          </button>
+        ))}
       </div>
     </div>
   )
@@ -376,17 +362,9 @@ export function Select<T extends string>({ value, options, onChange, label }: {
   label: string
 }) {
   return (
-    <label style={{ display: 'inline-flex', flexDirection: 'column', gap: 4 }}>
-      <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>{label}</span>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value as T)}
-        style={{
-          font: 'inherit', fontSize: 12.5, padding: '6px 10px', borderRadius: 7,
-          border: '1px solid var(--border)', background: 'var(--surface-1)',
-          color: 'var(--text-primary)', minWidth: 180,
-        }}
-      >
+    <label className="rs-field">
+      <span className="rs-label">{label}</span>
+      <select className="rs-select" value={value} onChange={(e) => onChange(e.target.value as T)}>
         {options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
       </select>
     </label>
@@ -407,7 +385,7 @@ export function SourceNote({ endpoints, invented }: { endpoints: string[]; inven
       ))}
       {invented && (
         <div style={{ marginTop: 6 }}>
-          <strong style={{ color: 'var(--status-critical)', fontWeight: 600 }}>Not in the API. </strong>
+          <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Not in the API. </strong>
           {invented}
         </div>
       )}

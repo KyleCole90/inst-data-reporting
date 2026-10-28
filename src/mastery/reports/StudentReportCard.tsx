@@ -6,6 +6,7 @@ import { DISTRICT } from '../data/seed'
 import { Legend, MethodBadge, MethodHeading, Select, SourceNote, Tooltip, type Method } from '../components/ui'
 import { ENDPOINTS } from '../data/endpoints'
 import { PAIR_SAMPLE_NOTE, PRIORITY_NOTE } from '../data/methodNotes'
+import { ReportHeading } from '../../shared/ReportShell'
 
 const STRUCTURE_ENDPOINTS = [ENDPOINTS.classrooms, ENDPOINTS.classroomObjectives]
 
@@ -69,19 +70,16 @@ export function StudentReportCard() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-      <header>
-        <h1>Student standards report card.</h1>
-        <p className="secondary" style={{ margin: '6px 0 0', fontSize: 13.5, maxWidth: 680, lineHeight: 1.55 }}>
-          Where does one student stand on every standard the class has assessed? Built to hand to a
-          family or bring to an intervention meeting.
-        </p>
-      </header>
+      <ReportHeading
+        title="Student standards report card"
+        description="Where does one student stand on every standard the class has assessed? Built to hand to a family or bring to an intervention meeting."
+      />
 
       <div
         className="card"
         style={{ borderLeft: '3px solid var(--status-critical)', padding: '14px 16px' }}
       >
-        <h3 style={{ fontSize: 13, marginBottom: 5, color: 'var(--status-critical)' }}>
+        <h3 style={{ fontSize: 13, marginBottom: 5 }}>
           Every name and number below is invented.
         </h3>
         <p style={{ margin: 0, fontSize: 13, lineHeight: 1.6, color: 'var(--text-secondary)', maxWidth: 760 }}>
@@ -107,14 +105,7 @@ export function StudentReportCard() {
           onChange={setStudentId}
           options={roster.map((s) => ({ value: s.id, label: s.name }))}
         />
-        <button
-          onClick={() => window.print()}
-          style={{
-            font: 'inherit', fontSize: 12.5, padding: '7px 14px', borderRadius: 7,
-            border: '1px solid var(--border)', background: 'var(--surface-1)',
-            color: 'var(--text-primary)', cursor: 'pointer',
-          }}
-        >
+        <button className="rs-btn" onClick={() => window.print()}>
           Print
         </button>
       </div>
@@ -154,7 +145,7 @@ export function StudentReportCard() {
         {needsWork.length > 0 && (
           <div style={{ padding: '14px 22px', borderBottom: '1px solid var(--grid)', background: 'color-mix(in srgb, var(--band-remediate) 7%, transparent)' }}>
             <MethodHeading method={METHODS.focus} title="Focus next">
-              <h3 style={{ fontSize: 12.5 }}>Focus next.</h3>
+              <h3 style={{ fontSize: 14 }}>Focus next</h3>
             </MethodHeading>
             <p style={{ margin: '5px 0 0', fontSize: 13, lineHeight: 1.6, color: 'var(--text-secondary)' }}>
               {needsWork.length} of {record.scores.length} standards sit below the 75% mastery cut. Start

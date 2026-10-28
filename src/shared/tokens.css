@@ -1,115 +1,133 @@
-/* Design tokens from the validated reference palette.
-   Light/dark are both selected sets, not an automatic flip. */
+/* Design tokens, Instructure 2026 palette. See DESIGN-SPEC.md.
+   Token names are the contract; values are brand colors or neutrals derived from Navy and White.
+   Light and dark are both selected sets, not an automatic flip. */
 
 :root {
-  --surface-1: #fcfcfb;
-  --page: #f9f9f7;
-  --text-primary: #0b0b0b;
-  --text-secondary: #52514e;
-  --text-muted: #898781;
-  --grid: #e1e0d9;
-  --baseline: #c3c2b7;
-  --border: rgba(11, 11, 11, 0.10);
+  /* Brand palette. Do not use these directly in components; use the roles below. */
+  --brand-navy: #0b1722;
+  --brand-white: #ffffff;
+  --brand-sky: #18c2ea;
+  --brand-blue-1: #0065b3;
+  --brand-blue-2: #00498a;
+  --brand-blue-3: #07355e;
+  --brand-red: #e91c1c;
+  --brand-red-3: #c01b1d;
+  --brand-green: #038745;
+  --brand-parchment: #4279b6;
 
-  /* categorical slots 1-3 (validated all-pairs, both modes) */
-  --series-1: #2a78d6;
-  --series-2: #eb6834;
-  --series-3: #1baf7a;
+  /* Surfaces and text (light) */
+  --page: #ffffff;
+  --surface-1: #ffffff;
+  --surface-2: #f4f7fa;
+  --text-primary: #0b1722;
+  --text-secondary: #3f4a55;
+  --text-muted: #5d6873;
+  --grid: #e6ebf0;
+  --baseline: #c5ced7;
+  --border: rgba(11, 23, 34, 0.14);
 
-  /* sequential blue ramp, light -> dark */
-  --seq-100: #cde2fb;
-  --seq-150: #b7d3f6;
-  --seq-200: #9ec5f4;
-  --seq-250: #86b6ef;
-  --seq-300: #6da7ec;
-  --seq-350: #5598e7;
-  --seq-400: #3987e5;
-  --seq-450: #2a78d6;
-  --seq-500: #256abf;
-  --seq-550: #1c5cab;
-  --seq-600: #184f95;
-  --seq-650: #104281;
-  --seq-700: #0d366b;
+  /* Interactive accent: Sky is too light on white, so light mode uses Tertiary Blue 1. */
+  --accent: #0065b3;
+  --accent-ink: #ffffff;
+  --heading-accent: #0065b3;
 
-  /* status - fixed, never themed */
-  --status-good: #0ca30c;
-  --status-warning: #fab219;
-  --status-serious: #ec835a;
-  --status-critical: #d03b3b;
+  /* Categorical. Series 1 is the primary or current series, series 2 the comparison or prior. */
+  --series-1: #0065b3;
+  --series-2: #07355e;
+  --series-3: #038745;
 
+  /* Sequential ramp, light to dark, built on the tertiary blues. */
+  --seq-100: #d3e6f6;
+  --seq-200: #a7cdec;
+  --seq-300: #6fa8d6;
+  --seq-400: #3a86c4;
+  --seq-500: #0065b3;
+  --seq-600: #00498a;
+  --seq-700: #07355e;
 
-  /* diverging mastery scale, centred on the 75% mastery cut.
-     Light surface: further from the cut = darker. */
-  --band-remediate: #962929;
-  --band-near: #e5726f;
-  --band-mastery: #6da7ec;
-  --band-exceeds: #184f95;
-  --band-none: #f0efec;
+  /* Status. Glyphs always travel with color, so the four stay readable without hue. */
+  --status-good: #038745;
+  --status-warning: #4279b6;
+  --status-serious: #b84a47;
+  --status-critical: #e91c1c;
+
+  /* Mastery bands, centred on the 75% cut. Red below the cut, blue at and above it. */
+  --band-remediate: #e91c1c;
+  --band-near: #f0928f;
+  --band-mastery: #0065b3;
+  --band-exceeds: #18c2ea;
+  --band-none: #eef1f4;
   --band-ink-remediate: #ffffff;
-  --band-ink-near: #0b0b0b;
-  --band-ink-mastery: #0b0b0b;
-  --band-ink-exceeds: #ffffff;
-  --band-ink-none: #898781;
+  --band-ink-near: #0b1722;
+  --band-ink-mastery: #ffffff;
+  --band-ink-exceeds: #0b1722;
+  --band-ink-none: #5d6873;
 
-  --radius: 4px;
-  --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius: 6px;
+  --font: "Geist Variable", "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) {
     color-scheme: dark;
-    --surface-1: #1a1a19;
-    --page: #0d0d0d;
+    --page: #0b1722;
+    --surface-1: #111f2c;
+    --surface-2: #162636;
     --text-primary: #ffffff;
-    --text-secondary: #c3c2b7;
-    --text-muted: #898781;
-    --grid: #2c2c2a;
-    --baseline: #383835;
-    --border: rgba(255, 255, 255, 0.10);
-    --series-1: #3987e5;
-    --series-2: #d95926;
-    --series-3: #199e70;
-
-    /* Dark surface: lightness still grows outward from the cut, but chroma
-       stays high at the extremes so the worst band reads as alarming
-       rather than pastel. */
-    --band-remediate: #ef5350;
-    --band-near: #b04a47;
-    --band-mastery: #3479cc;
-    --band-exceeds: #86b6ef;
-    --band-none: #383835;
-    --band-ink-remediate: #0b0b0b;
+    --text-secondary: #c3cdd6;
+    --text-muted: #94a2af;
+    --grid: rgba(255, 255, 255, 0.08);
+    --baseline: rgba(255, 255, 255, 0.24);
+    --border: rgba(255, 255, 255, 0.13);
+    --accent: #18c2ea;
+    --accent-ink: #0b1722;
+    --heading-accent: #18c2ea;
+    --series-1: #18c2ea;
+    --series-2: #4279b6;
+    --series-3: #038745;
+    --band-mastery: #0a72c4;
+    --band-near: #b84a47;
+    --band-none: #1b2a38;
     --band-ink-near: #ffffff;
-    --band-ink-mastery: #ffffff;
-    --band-ink-exceeds: #0b0b0b;
-    --band-ink-none: #898781;
+    --band-ink-none: #94a2af;
+    --seq-100: #07355e;
+    --seq-200: #00498a;
+    --seq-300: #0065b3;
+    --seq-400: #2f8bd0;
+    --seq-500: #4eb4e6;
+    --seq-600: #18c2ea;
+    --seq-700: #8ee3f7;
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --surface-1: #1a1a19;
-  --page: #0d0d0d;
+  --page: #0b1722;
+  --surface-1: #111f2c;
+  --surface-2: #162636;
   --text-primary: #ffffff;
-  --text-secondary: #c3c2b7;
-  --text-muted: #898781;
-  --grid: #2c2c2a;
-  --baseline: #383835;
-  --border: rgba(255, 255, 255, 0.10);
-  --series-1: #3987e5;
-  --series-2: #d95926;
-  --series-3: #199e70;
-
-  /* Dark surface: further from the cut = lighter. */
-  --band-remediate: #ef5350;
-  --band-near: #b04a47;
-  --band-mastery: #3479cc;
-  --band-exceeds: #86b6ef;
-  --band-none: #383835;
-  --band-ink-remediate: #0b0b0b;
+  --text-secondary: #c3cdd6;
+  --text-muted: #94a2af;
+  --grid: rgba(255, 255, 255, 0.08);
+  --baseline: rgba(255, 255, 255, 0.24);
+  --border: rgba(255, 255, 255, 0.13);
+  --accent: #18c2ea;
+  --accent-ink: #0b1722;
+  --heading-accent: #18c2ea;
+  --series-1: #18c2ea;
+  --series-2: #4279b6;
+  --series-3: #038745;
+  --band-mastery: #0a72c4;
+  --band-near: #b84a47;
+  --band-none: #1b2a38;
   --band-ink-near: #ffffff;
-  --band-ink-mastery: #ffffff;
-  --band-ink-exceeds: #0b0b0b;
-  --band-ink-none: #898781;
+  --band-ink-none: #94a2af;
+  --seq-100: #07355e;
+  --seq-200: #00498a;
+  --seq-300: #0065b3;
+  --seq-400: #2f8bd0;
+  --seq-500: #4eb4e6;
+  --seq-600: #18c2ea;
+  --seq-700: #8ee3f7;
 }

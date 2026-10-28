@@ -1,4 +1,5 @@
 @import '../shared/tokens.css';
+@import '../shared/shell.css';
 
 
 * { box-sizing: border-box; }
@@ -12,18 +13,18 @@ body {
 }
 
 h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
-h1 { font-size: 24px; letter-spacing: -0.02em; }
+h1 { font-size: 20px; letter-spacing: -0.015em; }
 h2 { font-size: 17px; }
 h3 { font-size: 14px; }
 
 .card {
   background: var(--surface-1);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 20px;
 }
 
-code { font-family: var(--font-mono); }
+code { font-family: var(--font-mono); overflow-wrap: anywhere; }
 
 .muted { color: var(--text-muted); }
 .secondary { color: var(--text-secondary); }
@@ -46,10 +47,13 @@ td {
   border-bottom: 1px solid var(--grid);
   color: var(--text-primary);
 }
+/* On narrow screens a wide table scrolls inside its card instead of widening the page. */
+@media (max-width: 720px) { table { display: block; overflow-x: auto; } }
+
 tbody tr:hover { background: color-mix(in srgb, var(--text-primary) 4%, transparent); }
 
 /* One focus ring for everything that takes focus. */
-:focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; border-radius: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
 /* Heat cells are links: say so on hover and focus. */
 .heat-cell { transition: box-shadow 120ms ease, transform 120ms ease; }

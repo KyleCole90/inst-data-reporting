@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen">
-      <aside className="hidden w-64 shrink-0 flex-col border-r bg-muted/30 p-4 md:flex">
+      <aside className="hidden w-64 shrink-0 flex-col border-r bg-card p-4 md:flex">
         <div className="flex items-center gap-2 px-2 py-1">
           <LayoutGrid className="size-5" />
           <span className="font-semibold">Data reporting</span>
@@ -42,7 +42,7 @@ export default function App() {
               aria-current={product === f.key}
               className={cn(
                 'flex w-full items-center justify-between rounded-md px-3 py-2 text-sm',
-                product === f.key ? 'bg-muted font-medium' : 'text-muted-foreground hover:bg-muted/60',
+                product === f.key ? 'bg-muted font-semibold shadow-[inset_2px_0_0_var(--accent)]' : 'text-muted-foreground hover:bg-muted/60',
               )}
             >
               {f.label}
@@ -50,14 +50,14 @@ export default function App() {
             </button>
           ))}
         </nav>
-        <div className="mt-auto rounded-md border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900">
-          Sample data only. Every name and number is invented.
+        <div className="rs-notice mt-auto !rounded-md !border !p-3 !text-left !text-xs">
+          <b>Sample data</b>Every name and number is invented.
         </div>
       </aside>
 
       <main className="min-w-0 flex-1">
-        <div className="bg-amber-400 px-4 py-1.5 text-center text-xs font-medium text-zinc-950 md:hidden">
-          Sample data only. Every name and number is invented.
+        <div className="rs-notice md:hidden">
+          <b>Sample data</b>Every name and number is invented.
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-b px-4 py-5 md:px-8">
@@ -114,7 +114,7 @@ export default function App() {
                   <TableCell className="hidden text-muted-foreground md:table-cell">{d.source}</TableCell>
                   <TableCell>
                     {d.status === 'live' ? (
-                      <Badge className="bg-emerald-600 text-white">Live</Badge>
+                      <Badge className="bg-[var(--status-good)] text-white">Live</Badge>
                     ) : (
                       <Badge variant="outline">Coming soon</Badge>
                     )}

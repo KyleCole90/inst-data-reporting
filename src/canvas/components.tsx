@@ -5,6 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { cn } from '@/lib/utils'
+import { ReportHeading } from '../shared/ReportShell'
 
 /* ---------- Method: how a number is calculated, and which DAP tables feed it ---------- */
 
@@ -60,7 +61,7 @@ export function StatTile({ label, value, note, method }: { label: string; value:
         <span className="text-[11px] tracking-wide text-[var(--text-muted)] uppercase">{label}</span>
         {method && <MethodPopover method={method} title={label} />}
       </div>
-      <div className="text-[28px] leading-tight font-semibold tracking-tight tabular-nums">{value}</div>
+      <div className="flex h-9 items-center text-[28px] font-semibold tracking-tight tabular-nums">{value}</div>
       {note && <div className="text-xs text-muted-foreground">{note}</div>}
     </Card>
   )
@@ -195,13 +196,8 @@ export function Change({ value, unit = ' pts' }: { value: number; unit?: string 
   )
 }
 
-export function SectionTitle({ title, description }: { title: string; description: string }) {
-  return (
-    <div>
-      <h1 className="text-lg font-semibold tracking-tight">{title}</h1>
-      <p className="max-w-3xl text-sm text-muted-foreground">{description}</p>
-    </div>
-  )
+export function SectionTitle(props: { title: string; description: string }) {
+  return <ReportHeading {...props} />
 }
 
 export function SourceNote({ children }: { children: ReactNode }) {

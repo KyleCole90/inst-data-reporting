@@ -4,6 +4,7 @@ import { CLASSROOMS } from '../data/seed'
 import { MATERIALS } from '../data/api'
 import { Meter, MethodHeading, SeverityBadge, Select, StatTile, SourceNote, Legend, type Method } from '../components/ui'
 import { ENDPOINTS } from '../data/endpoints'
+import { ReportHeading } from '../../shared/ReportShell'
 
 const SEV_ORDER: Severity[] = ['critical', 'serious', 'warning']
 
@@ -116,14 +117,10 @@ export function ItemHealth() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-      <header>
-        <h1>Assessment item health.</h1>
-        <p className="secondary" style={{ margin: '6px 0 0', fontSize: 13.5, maxWidth: 680, lineHeight: 1.55 }}>
-          Which items are broken, not just hard? Each item's percent correct is compared against the
-          other items on the same standard in the same tracker. A wide gap means the item is the
-          problem, not the student.
-        </p>
-      </header>
+      <ReportHeading
+        title="Assessment item health"
+        description="Which items are broken, not just hard? Each item’s percent correct is compared against the other items on the same standard in the same tracker. A wide gap means the item is the problem, not the student."
+      />
 
       <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'flex-end' }}>
         <Select
@@ -161,7 +158,7 @@ export function ItemHealth() {
         )}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12 }}>
         <StatTile label="Items scanned" value={totalItems.toLocaleString()} note={`${MATERIALS.length} assessments across ${CLASSROOMS.length} trackers`} method={METHODS.scanned} />
         <StatTile label="Needs a fix" value={all.length} note={`${((all.length / totalItems) * 100).toFixed(1)}% of all items`} method={METHODS.fix} />
         <StatTile label="Likely miskeyed" value={counts.critical} note="Fix before the next window" method={METHODS.miskey} />
@@ -182,7 +179,7 @@ export function ItemHealth() {
           No items flagged for this filter.{' '}
           <button
             onClick={clearFilters}
-            style={{ font: 'inherit', fontSize: 13, border: 0, background: 'none', color: 'var(--series-1)', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
+            style={{ font: 'inherit', fontSize: 13, border: 0, background: 'none', color: 'var(--accent)', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
           >
             Clear filters
           </button>

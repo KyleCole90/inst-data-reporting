@@ -36,8 +36,8 @@ const M = {
 } satisfies Record<string, Method>
 
 const config = {
-  fall: { label: FALL, color: 'var(--series-1)' },
-  spring: { label: SPRING, color: 'var(--series-2)' },
+  fall: { label: FALL, color: 'var(--series-2)' },
+  spring: { label: SPRING, color: 'var(--series-1)' },
 } satisfies ChartConfig
 
 export function ProgramAssessment() {
@@ -61,7 +61,7 @@ export function ProgramAssessment() {
         title="Mastery rate by department"
         description="Share of outcome results at mastery, by term"
         method={M.byDept}
-        legend={<Legend items={[{ label: FALL, fill: 'var(--series-1)' }, { label: SPRING, fill: 'var(--series-2)' }]} />}
+        legend={<Legend items={[{ label: FALL, fill: 'var(--series-2)' }, { label: SPRING, fill: 'var(--series-1)' }]} />}
         chart={
           <ChartContainer config={config} className="aspect-auto h-[280px] w-full">
             <BarChart data={d.byDepartment} margin={{ top: 8 }} barGap={2}>

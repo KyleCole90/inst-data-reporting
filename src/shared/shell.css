@@ -1,0 +1,68 @@
+/* Report shell: the one header, tab bar, and footer both report apps use. See DESIGN-SPEC.md. */
+
+.rs-root { min-height: 100vh; display: flex; flex-direction: column; background: var(--page); color: var(--text-primary); font-family: var(--font); }
+.rs-wrap { max-width: 1240px; margin: 0 auto; width: 100%; }
+
+/* Sample-data notice: always Navy, so it reads the same in both themes. */
+.rs-notice { background: var(--brand-navy); color: #fff; font-size: 12.5px; padding: 8px 20px; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.13); }
+.rs-notice b { color: var(--brand-sky); font-weight: 600; margin-right: 6px; }
+
+/* Gradient pathway: three tertiary blues, 3px, under the header. */
+.rs-header { background: var(--surface-1); border-bottom: 1px solid var(--border); padding: 18px 20px 0; position: relative; }
+.rs-header::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: linear-gradient(90deg, var(--brand-blue-3), var(--brand-blue-2) 45%, var(--brand-blue-1)); }
+.rs-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.rs-top > div { min-width: 0; }
+.rs-back { font-size: 12px; color: var(--text-muted); text-decoration: none; }
+.rs-back:hover { color: var(--text-primary); }
+.rs-eyebrow { margin-top: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--heading-accent); }
+.rs-title { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin: 2px 0 0; }
+.rs-sub { font-size: 12.5px; color: var(--text-muted); margin-top: 4px; }
+.rs-theme { flex-shrink: 0; height: 32px; font: inherit; font-size: 12px; padding: 6px 12px; border-radius: var(--radius); border: 1px solid var(--border); background: transparent; color: var(--text-secondary); cursor: pointer; }
+.rs-theme:hover { color: var(--text-primary); border-color: var(--baseline); }
+
+.rs-tabs { display: flex; gap: 4px; margin-top: 18px; overflow-x: auto; scrollbar-width: none; }
+.rs-tabs::-webkit-scrollbar { display: none; }
+.rs-tab { white-space: nowrap; flex-shrink: 0; padding: 10px 14px 11px; font-size: 13.5px; text-decoration: none; color: var(--text-secondary); border-bottom: 2px solid transparent; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1px; background: none; border-top: 0; border-left: 0; border-right: 0; font-family: inherit; cursor: pointer; }
+.rs-tab:hover { color: var(--text-primary); }
+.rs-tab[aria-current="page"] { color: var(--text-primary); font-weight: 600; border-bottom-color: var(--accent); }
+.rs-tag { font-size: 9.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; background: var(--brand-red); color: #fff; }
+
+.rs-main { flex: 1; padding: 28px 20px 64px; }
+.rs-footer { border-top: 1px solid var(--border); padding: 18px 20px; font-size: 12px; line-height: 1.6; color: var(--text-muted); }
+
+/* Page heading inside a report: same size and rhythm everywhere. */
+.rs-heading h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0; }
+.rs-heading p { margin: 6px 0 0; max-width: 62ch; font-size: 14px; line-height: 1.55; color: var(--text-secondary); }
+
+@media print { .rs-notice, .rs-header, .rs-footer { display: none !important; } .rs-main { padding: 0; } }
+
+/* Controls: one field label, one select, one segmented toggle. 32px tall, 8px radius. */
+.rs-field { display: inline-flex; flex-direction: column; gap: 4px; }
+.rs-label { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+
+.rs-select {
+  appearance: none; -webkit-appearance: none;
+  font: inherit; font-size: 13px; color: var(--text-primary);
+  height: 32px; min-width: 180px; padding: 0 32px 0 10px; border-radius: 8px;
+  border: 1px solid var(--border); background-color: var(--surface-1); cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%2394a2af' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center;
+}
+.rs-select:hover { border-color: var(--baseline); }
+.rs-select option { background: var(--surface-1); color: var(--text-primary); }
+
+.rs-seg { display: inline-flex; gap: 2px; padding: 2px; height: 32px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); }
+.rs-seg button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--text-secondary); padding: 0 12px; border-radius: 6px; cursor: pointer; }
+.rs-seg button:hover { color: var(--text-primary); background: var(--surface-2); }
+.rs-seg button[aria-pressed="true"],
+.rs-seg-on { font-weight: 600; color: var(--text-primary); background: color-mix(in srgb, var(--accent) 16%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.rs-btn { font: inherit; font-size: 13px; height: 32px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); cursor: pointer; }
+.rs-btn:hover { border-color: var(--baseline); background: var(--surface-2); }
+
+@media (max-width: 720px) {
+  .rs-header { padding-top: 14px; }
+  .rs-main { padding: 20px 14px 48px; }
+}
